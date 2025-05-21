@@ -8,6 +8,8 @@ import { ReservesBreakdown } from "@/components/reserves-breakdown";
 import { AuditReport } from "@/components/audit-report";
 import { TokenList } from "@/components/token-list";
 import { Footnotes } from "@/components/footnotes";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BarChart3, Shield, Circle } from "lucide-react";
 
 // Mock data for the charts
 const generateHistoricalData = () => {
@@ -96,36 +98,61 @@ const Index = () => {
             reportDate="May 06, 2025" 
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-            <div className="bg-card rounded-lg border p-6 shadow-sm h-full">
-              <BalancesChart circulation={60.5} reserves={60.7} />
-            </div>
-            <div className="bg-card rounded-lg border p-6 shadow-sm h-full">
-              <ChangeChart 
-                emitido={14.2} 
-                resgatado={14.0} 
-                change={0.28}
-                historicalData={generateHistoricalData()} 
-              />
-            </div>
-          </div>
-          
-          <div className="bg-card rounded-lg border p-6 shadow-sm mt-12 mb-8">
-            <h2 className="text-2xl font-bold mb-6">Reserves</h2>
-            <ReservesBreakdown 
-              totalAssets="$149,274,515,968.00" 
-              totalLiabilities="$143,682,673,568.00" 
-              netEquity="$5,591,842,400.00"
-              assetDistribution={ASSET_DISTRIBUTION}
-            />
-          </div>
-          
-          <div className="bg-card rounded-lg border p-6 shadow-sm my-8">
-            <AuditReport date="May 02, 2025" pages={5} />
-          </div>
-          
-          <div className="bg-card rounded-lg border p-6 shadow-sm my-8">
-            <TokenList tokens={TOKENS} />
+          <div className="mt-8">
+            <Tabs defaultValue="balanco" className="w-full">
+              <TabsList className="grid grid-cols-3 w-full max-w-md mx-auto mb-8">
+                <TabsTrigger value="balanco" className="flex items-center gap-2">
+                  <BarChart3 size={18} />
+                  <span>Balanço</span>
+                </TabsTrigger>
+                <TabsTrigger value="reserves" className="flex items-center gap-2">
+                  <Shield size={18} />
+                  <span>Reserves</span>
+                </TabsTrigger>
+                <TabsTrigger value="circulation" className="flex items-center gap-2">
+                  <Circle size={18} />
+                  <span>Circulation</span>
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="balanco" className="space-y-6 animate-in fade-in-50">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-card rounded-lg border p-6 shadow-sm h-full">
+                    <BalancesChart circulation={60.5} reserves={60.7} />
+                  </div>
+                  <div className="bg-card rounded-lg border p-6 shadow-sm h-full">
+                    <ChangeChart 
+                      emitido={14.2} 
+                      resgatado={14.0} 
+                      change={0.28}
+                      historicalData={generateHistoricalData()} 
+                    />
+                  </div>
+                </div>
+                
+                <div className="bg-card rounded-lg border p-6 shadow-sm">
+                  <AuditReport date="May 02, 2025" pages={5} />
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="reserves" className="space-y-6 animate-in fade-in-50">
+                <div className="bg-card rounded-lg border p-6 shadow-sm">
+                  <h2 className="text-2xl font-bold mb-6">Reserves</h2>
+                  <ReservesBreakdown 
+                    totalAssets="$149,274,515,968.00" 
+                    totalLiabilities="$143,682,673,568.00" 
+                    netEquity="$5,591,842,400.00"
+                    assetDistribution={ASSET_DISTRIBUTION}
+                  />
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="circulation" className="space-y-6 animate-in fade-in-50">
+                <div className="bg-card rounded-lg border p-6 shadow-sm">
+                  <TokenList tokens={TOKENS} />
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
           
           <div className="bg-card rounded-lg border p-6 shadow-sm my-8">

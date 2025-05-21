@@ -31,11 +31,14 @@ export function BalancesChart({ circulation, reserves }: BalancesChartProps) {
   // Custom tooltip with safety checks to avoid accessing undefined properties
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
-      if (payload[0].name === "Circulation") {
+      // Safety check for the payload structure
+      const payloadName = payload[0]?.name || '';
+
+      if (payloadName === "Circulation" || payloadName === "value") {
         return (
           <div className="bg-card border p-3 shadow-sm rounded-md">
             <p className="text-sm font-medium">Circulation</p>
-            <p className="text-sm text-primary">{formatValue(payload[0].value)}</p>
+            <p className="text-sm text-primary">{formatValue(payload[0]?.value || 0)}</p>
           </div>
         );
       } else {
@@ -76,14 +79,14 @@ export function BalancesChart({ circulation, reserves }: BalancesChartProps) {
             data={data} 
             margin={{ top: 30, right: 30, left: 30, bottom: 30 }} 
             barGap={0} 
-            barCategoryGap="35%"
+            barCategoryGap="20%"
           >
             <XAxis dataKey="name" />
             <YAxis domain={[0, 'dataMax + 5']} hide />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="value" radius={[8, 8, 0, 0]} />
-            <Bar dataKey="cashFunds" stackId="reserves" radius={[8, 8, 0, 0]} fill="hsl(var(--chart-navy))" />
-            <Bar dataKey="cashBanks" stackId="reserves" radius={[0, 0, 0, 0]} fill="hsl(var(--chart-light-blue))" />
+            <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={100} />
+            <Bar dataKey="cashFunds" stackId="reserves" radius={[8, 8, 0, 0]} fill="hsl(var(--chart-navy))" barSize={100} />
+            <Bar dataKey="cashBanks" stackId="reserves" radius={[0, 0, 0, 0]} fill="hsl(var(--chart-light-blue))" barSize={100} />
           </BarChart>
         </ResponsiveContainer>
       </div>

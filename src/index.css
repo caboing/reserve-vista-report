@@ -180,3 +180,17 @@
   @apply mt-12 mb-8;
 }
 
+/* Animation for tab content transitions */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.fade-in-50 {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
