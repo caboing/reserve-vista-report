@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -106,7 +105,7 @@ const Index = () => {
             onTabChange={handleTabChange}
           />
           
-          <div className="bg-secondary/20 p-6">
+          <div className="mt-4">
             <Tabs value={activeTab} className="w-full">
               <TabsContent value="balanco" className="space-y-6 animate-in fade-in-50">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

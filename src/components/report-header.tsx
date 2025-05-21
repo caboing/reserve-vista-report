@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 
 interface ReportHeaderProps {
   companyName: string;
@@ -62,7 +63,7 @@ export function ReportHeader({ companyName, reserveRatio, reportDate, onTabChang
         </div>
       </div>
       
-      <div className="p-6 bg-gradient-to-b from-background to-secondary/30">
+      <Card className="border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-4 md:mb-0">
             <Avatar className="w-16 h-16 rounded-full overflow-hidden">
@@ -104,7 +105,7 @@ export function ReportHeader({ companyName, reserveRatio, reportDate, onTabChang
             </Tabs>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
