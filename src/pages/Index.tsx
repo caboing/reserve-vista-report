@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { ReportHeader } from "@/components/report-header";
@@ -7,7 +8,7 @@ import { ReservesBreakdown } from "@/components/reserves-breakdown";
 import { AuditReport } from "@/components/audit-report";
 import { TokenList } from "@/components/token-list";
 import { Footnotes } from "@/components/footnotes";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { BarChart3, Shield, Circle } from "lucide-react";
 
 // Mock data for the charts
@@ -83,6 +84,12 @@ const ASSET_DISTRIBUTION = {
 };
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState("balanco");
+  
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
   return (
     <ThemeProvider defaultTheme="light">
       <div className="min-h-screen bg-background">
@@ -94,11 +101,12 @@ const Index = () => {
           <ReportHeader 
             companyName="Scenium Blockchain" 
             reserveRatio="Over 100%" 
-            reportDate="May 06, 2025" 
+            reportDate="May 06, 2025"
+            onTabChange={handleTabChange}
           />
           
           <div className="mt-4">
-            <Tabs defaultValue="balanco" className="w-full">
+            <Tabs value={activeTab} className="w-full">
               <TabsContent value="balanco" className="space-y-6 animate-in fade-in-50">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-card rounded-lg border p-6 shadow-sm h-full">
