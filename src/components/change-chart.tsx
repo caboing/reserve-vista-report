@@ -12,14 +12,14 @@ export function ChangeChart({ emitido, resgatado, change, historicalData }: Chan
   // Format for the tooltip
   const formatValue = (value: number) => `$${value.toFixed(1)}B`;
   
-  // Custom tooltip
+  // Custom tooltip with null checks
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-card border p-3 shadow-sm rounded-md">
-          <p className="text-sm font-medium">Hour {payload[0].payload.hour}</p>
-          <p className="text-sm text-blue-500">Reserva: {payload[0].value}</p>
-          <p className="text-sm text-cyan-400">Circulação: {payload[1].value}</p>
+          <p className="text-sm font-medium">Hour {payload[0]?.payload?.hour || 'N/A'}</p>
+          <p className="text-sm text-blue-500">Reserva: {payload[0]?.value || 'N/A'}</p>
+          <p className="text-sm text-cyan-400">Circulação: {payload[1]?.value || 'N/A'}</p>
         </div>
       );
     }
@@ -58,7 +58,7 @@ export function ChangeChart({ emitido, resgatado, change, historicalData }: Chan
         <ResponsiveContainer width="100%" height={200}>
           <LineChart 
             data={historicalData} 
-            margin={{ top: 60, right: 10, left: 10, bottom: 10 }}
+            margin={{ top: 20, right: 10, left: 10, bottom: 10 }}
           >
             <XAxis 
               dataKey="hour" 
@@ -66,7 +66,7 @@ export function ChangeChart({ emitido, resgatado, change, historicalData }: Chan
               tickLine={false}
             />
             <YAxis 
-              domain={['dataMin + 300', 'dataMax + 400']} 
+              domain={['dataMin - 100', 'dataMax + 100']} 
               hide
             />
             <Tooltip content={<CustomTooltip />} />

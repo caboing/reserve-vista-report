@@ -1,4 +1,3 @@
-
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { ReportHeader } from "@/components/report-header";
@@ -93,28 +92,13 @@ const Index = () => {
           </div>
           
           <ReportHeader 
-            companyName="Tokeniza Stable Coin" 
+            companyName="Scenium Blockchain" 
             reserveRatio="Over 100%" 
             reportDate="May 06, 2025" 
           />
           
-          <div className="mt-8">
+          <div className="mt-4">
             <Tabs defaultValue="balanco" className="w-full">
-              <TabsList className="grid grid-cols-3 w-full max-w-md mx-auto mb-8">
-                <TabsTrigger value="balanco" className="flex items-center gap-2">
-                  <BarChart3 size={18} />
-                  <span>Balanço</span>
-                </TabsTrigger>
-                <TabsTrigger value="reserves" className="flex items-center gap-2">
-                  <Shield size={18} />
-                  <span>Reserves</span>
-                </TabsTrigger>
-                <TabsTrigger value="circulation" className="flex items-center gap-2">
-                  <Circle size={18} />
-                  <span>Circulation</span>
-                </TabsTrigger>
-              </TabsList>
-              
               <TabsContent value="balanco" className="space-y-6 animate-in fade-in-50">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-card rounded-lg border p-6 shadow-sm h-full">
