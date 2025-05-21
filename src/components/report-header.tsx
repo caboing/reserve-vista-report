@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -66,37 +66,28 @@ export function ReportHeader({ companyName, reserveRatio, reportDate, onTabChang
       <Card className="border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-4 md:mb-0">
-            <div className="relative">
-              <Avatar className="w-16 h-16 rounded-full overflow-hidden">
-                <AvatarImage 
-                  src="https://www.scenium.io/_image?href=%2F_astro%2Fscenium.wuHdhx7C.png&w=162&h=43&f=webp" 
-                  alt={companyName}
-                  className="object-contain" 
-                />
-                <AvatarFallback className="bg-gray-100 dark:bg-gray-700 text-xl font-bold">
-                  {companyName.substring(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="absolute -bottom-1 -right-1 bg-green-100 dark:bg-green-900 rounded-full p-0.5">
-                <Check size={16} className="text-green-600 dark:text-green-300" />
-              </div>
-            </div>
+            <Avatar className="w-16 h-16 rounded-full overflow-hidden">
+              <AvatarImage 
+                src="https://www.scenium.io/_image?href=%2F_astro%2Fscenium.wuHdhx7C.png&w=162&h=43&f=webp" 
+                alt={companyName}
+                className="object-contain" 
+              />
+              <AvatarFallback className="bg-gray-100 dark:bg-gray-700 text-xl font-bold">
+                {companyName.substring(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
             
             <div className="text-center md:text-left">
-              <div className="flex items-center gap-2">
-                <p className="text-xl font-medium text-gray-700 dark:text-gray-300">{companyName}</p>
-                <span className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs px-2 py-0.5 rounded-full">Verified</span>
-              </div>
+              <p className="text-xl font-medium text-gray-700 dark:text-gray-300">{companyName}</p>
               <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">{reserveRatio}</h2>
               <div className="flex items-center gap-1 text-green-600 dark:text-green-400">
-                <Check size={16} />
                 <p className="text-sm font-medium">100% Reserve Compliance</p>
               </div>
             </div>
           </div>
           
           <div className="flex flex-col items-end">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <p className="text-lg font-medium text-gray-600 dark:text-gray-400 mb-4">
               Fact Finance Proof of Reserves Service
             </p>
             <Tabs defaultValue="balanco" className="w-auto" onValueChange={handleTabChange}>
