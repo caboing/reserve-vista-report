@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { ReportHeader } from "@/components/report-header";
@@ -9,7 +10,8 @@ import { AuditReport } from "@/components/audit-report";
 import { TokenList } from "@/components/token-list";
 import { Footnotes } from "@/components/footnotes";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import { BarChart3, Shield, Circle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 // Mock data for the charts
 const generateHistoricalData = () => {
@@ -94,7 +96,13 @@ const Index = () => {
     <ThemeProvider defaultTheme="light">
       <div className="min-h-screen bg-background">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex justify-end mb-6">
+          <div className="flex justify-between items-center mb-6">
+            <Link to="/">
+              <Button variant="outline" className="flex items-center gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Button>
+            </Link>
             <ThemeSwitch />
           </div>
           
